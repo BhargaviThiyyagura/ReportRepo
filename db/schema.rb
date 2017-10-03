@@ -10,21 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170919212836) do
-
-  create_table "SALES_TREND", id: false, force: :cascade do |t|
-    t.date "SLS_PROC_WRK_DT"
-    t.varchar "YR_MNTH", limit: 6
-    t.varchar "PROGRAM", limit: 15
-    t.char "COMPANY_CODE", limit: 4, null: false
-    t.decimal "WAC", precision: 38, scale: 2
-    t.decimal "SF", precision: 38, scale: 2
-    t.decimal "SSF", precision: 38, scale: 2
-    t.decimal "SDC", precision: 38, scale: 2
-    t.decimal "QTY", precision: 38, scale: 2
-    t.decimal "SALES", precision: 38, scale: 2
-    t.varchar "SOURCE", limit: 9, null: false
-  end
+ActiveRecord::Schema.define(version: 20170925070957) do
 
   create_table "SALES_TXN", id: false, force: :cascade do |t|
     t.decimal "sls_id", precision: 10, scale: 0, null: false
@@ -33,10 +19,74 @@ ActiveRecord::Schema.define(version: 20170919212836) do
     t.decimal "sls_amt", precision: 19, scale: 4
   end
 
+  create_table "all_reports", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "yrmnth", null: false
+    t.string "azure"
+    t.string "link"
+    t.string "approval", default: "Pending"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sales_summaries", force: :cascade do |t|
     t.string "sls_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sales_trends", id: false, force: :cascade do |t|
+    t.date "sls_proc_wrk_dt"
+    t.string "yr_mnth"
+    t.string "program"
+    t.string "company_code"
+    t.string "program_type"
+    t.string "splr_acct_id"
+    t.string "splr_acct_nam"
+    t.string "sap_sold_to"
+    t.string "cust_chn_id"
+    t.string "cust_chn_nam"
+    t.string "segment"
+    t.string "fill_dc_id"
+    t.decimal "sls_qty", precision: 18, scale: 0
+    t.decimal "sls_amt", precision: 18, scale: 0
+    t.decimal "sdc", precision: 18, scale: 0
+    t.decimal "wac", precision: 18, scale: 0
+    t.decimal "sf", precision: 18, scale: 0
+    t.decimal "ssf", precision: 18, scale: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sales_trends_bak", id: false, force: :cascade do |t|
+    t.date "sls_proc_wrk_dt"
+    t.string "yr_mnth"
+    t.string "program"
+    t.string "company_code"
+    t.string "program_type"
+    t.string "splr_acct_id"
+    t.string "splr_acct_nam"
+    t.string "sap_sold_to"
+    t.string "cust_chn_id"
+    t.string "cust_chn_nam"
+    t.string "segment"
+    t.string "fill_dc_id"
+    t.decimal "sls_qty", precision: 18, scale: 0
+    t.decimal "sls_amt", precision: 18, scale: 0
+    t.decimal "sdc", precision: 18, scale: 0
+    t.decimal "wac", precision: 18, scale: 0
+    t.decimal "sf", precision: 18, scale: 0
+    t.decimal "ssf", precision: 18, scale: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sales_txns", force: :cascade do |t|
+    t.decimal "sls_id", precision: 18, scale: 0
+    t.decimal "sls_id_seq_num", precision: 18, scale: 0
+    t.decimal "sls_qty", precision: 18, scale: 0
+    t.decimal "sls_amt", precision: 18, scale: 0
   end
 
   create_table "sl_quarantines", force: :cascade do |t|
@@ -61,7 +111,6 @@ ActiveRecord::Schema.define(version: 20170919212836) do
     t.datetime "updated_at", null: false
     t.string "role", default: "user"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

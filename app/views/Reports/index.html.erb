@@ -1,65 +1,35 @@
-<h1>Sales Reports</h1>
+<div>
+</div>
+
 <%= button_to 'Sales Report', reports_path(format: :xlsx), method: :get %>
 
 
 <div class="row no-gutters">
 <div class="col-xs-6">
-  <h2 class="sub-header">MSH Sales Summary</h2>
+  <h2 class="sub-header">SALES/WAC</h2>
   <div class="table-responsive">
   <table class="table table-striped" width = "50">
   <thead class="thead-inverse">
    <tr>
      <th class="col-xs-1">SLS_PROC_WRK_DT</th>
-     <th class="col-xs-1">COMPANY_CODE</th>
-     <th class="col-xs-1">WAC</th>
-     <th class="col-xs-1">SDC</th>
-     <th class="col-xs-1">SF</th>
-     <th class="col-xs-1">SSF</th>
-     <th class="col-xs-1">QTY</th>
      <th class="col-xs-1">SALES</th>
-     </tr>
+     <th class="col-xs-1">WAC</th>
+     <th class="col-xs-1">SALES_DIFF</th>
+     <th class="col-xs-1">SALES/WAC</th>
+  </tr>
  </thead>
  <tbody>
-   <% @mshslssummary.each do |r| %>
+   <% @slstrend.each do |r| %>
      <tr>
        <td class="col-xs-1"><%= r.SLS_PROC_WRK_DT %></td>
-       <td class="col-xs-1"><%= r.COMPANY_CODE %></td>
-       <td class="col-xs-1"><%= r.WAC %></td>
-       <td class="col-xs-1"><%= r.SDC %></td>
-       <td class="col-xs-1"><%= r.SF %></td>
-       <td class="col-xs-1"><%= r.SSF %></td>
-       <td class="col-xs-1"><%= r.QTY %></td>
        <td class="col-xs-1"><%= r.SALES %></td>
-       </tr>
+       <td class="col-xs-1"><%= r.WAC %></td>
+       <td class="col-xs-1"><%= r.SLS_DIFF %></td>
+       <td class="col-xs-1"><%= number_to_percentage(r.SALES_TO_WAC) %></td> 
+    </tr>
      <% end %>
  </tbody>
  </table>
   
-</div>
-</div>
-
-<div class="col-xs-6">
-<h2 class="sub-header">SALES/WAC</h2>
-<div class="table-responsive">
-<table class="table table-striped">
-<thead class="thead-inverse">
- <tr>
-   <th>SLS_PROC_WRK_DT</th>
-   <th>COMPANY_CODE</th>
-   <th>WAC</th>
-</tr>
-</thead>
-<tbody>
- <% @mshslssummary.each do |r| %>
-   <tr>
-     <td><%= r.SLS_PROC_WRK_DT %></td>
-     <td><%= r.COMPANY_CODE %></td>
-     <td><%= r.WAC %></td>
-    </tr>
-   <% end %>
-</tbody>
-</table>
-
-</div>
 </div>
 </div>

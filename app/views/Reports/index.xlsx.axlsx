@@ -5,11 +5,24 @@ wb.styles do |style|
   wb.add_worksheet(name: "Daily_Sales_Report") do |sheet|
 
     sheet.add_row ['SLS_PROC_WRK_DT', 'YR_MNTH', 'PROGRAM', 'COMPANY_CODE', 'WAC', 'SF', 'SSF', 'SDC', 'QTY', 'SALES', 'SOURCE']
-    @sales.each do |sales|
+   
+    @salessummary.each do |sales|
                        
-     sheet.add_row [sales.SLS_PROC_WRK_DT, sales.YR_MNTH, sales.PROGRAM, sales.COMPANY_CODE, sales.WAC, sales.SF, sales.SSF, sales.SDC, sales.QTY, sales.SALES, sales.SOURCE]
+     sheet.add_row [sales.sls_proc_wrk_dt, sales.yr_mnth, sales.program, sales.company_code, sales.wac, sales.sf, sales.ssf, sales.sdc, sales.qty, sales.sales, 'WAREHOUSE']
     end
-  end
+    binding.pry
+    end
+
+  wb.add_worksheet(name: "MSH_Sales_Summary") do |sheet|
+
+    sheet.add_row ['SLS_PROC_WRK_DT', 'COMPANY_CODE', 'WAC', 'SF', 'SSF', 'SDC', 'QTY', 'SALES']
+    
+    @mshslssummary.each do |mshsales|
+                       
+     sheet.add_row [mshsales.sls_proc_wrk_dt, mshsales.company_code, mshsales.wac, mshsales.sf, mshsales.ssf, mshsales.sdc, mshsales.qty, mshsales.sales]
+    end
+    end
+ 
     header_style = wb.styles.add_style :bg_color => "D8D8D8",
                                                    :b => true,
                                                    :border => { :style => :thin, :color => "00" },
