@@ -18,7 +18,7 @@ class ReportsController <ApplicationController
 
             @slstrend = SalesToWac.all.order('sls_proc_wrk_dt')
          
-          binding.pry
+          #binding.pry
 
         respond_to do |format|
             format.html

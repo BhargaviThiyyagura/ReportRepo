@@ -49,6 +49,29 @@ ActiveRecord::Schema.define(version: 20170925070957) do
     t.string "cust_chn_nam"
     t.string "segment"
     t.string "fill_dc_id"
+    t.decimal "sls_qty", precision: 15, scale: 2
+    t.decimal "sls_amt", precision: 15, scale: 2
+    t.decimal "sdc", precision: 15, scale: 2
+    t.decimal "wac", precision: 15, scale: 2
+    t.decimal "sf", precision: 15, scale: 2
+    t.decimal "ssf", precision: 15, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sales_trends_bak", id: false, force: :cascade do |t|
+    t.date "sls_proc_wrk_dt"
+    t.string "yr_mnth"
+    t.string "program"
+    t.string "company_code"
+    t.string "program_type"
+    t.string "splr_acct_id"
+    t.string "splr_acct_nam"
+    t.string "sap_sold_to"
+    t.string "cust_chn_id"
+    t.string "cust_chn_nam"
+    t.string "segment"
+    t.string "fill_dc_id"
     t.decimal "sls_qty", precision: 18, scale: 0
     t.decimal "sls_amt", precision: 18, scale: 0
     t.decimal "sdc", precision: 18, scale: 0
@@ -59,7 +82,7 @@ ActiveRecord::Schema.define(version: 20170925070957) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sales_trends_bak", id: false, force: :cascade do |t|
+  create_table "sales_trends_bk", id: false, force: :cascade do |t|
     t.date "sls_proc_wrk_dt"
     t.string "yr_mnth"
     t.string "program"

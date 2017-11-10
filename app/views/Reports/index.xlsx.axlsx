@@ -10,7 +10,7 @@ wb.styles do |style|
                        
      sheet.add_row [sales.sls_proc_wrk_dt, sales.yr_mnth, sales.program, sales.company_code, sales.wac, sales.sf, sales.ssf, sales.sdc, sales.qty, sales.sales, 'WAREHOUSE']
     end
-    binding.pry
+   
     end
 
   wb.add_worksheet(name: "MSH_Sales_Summary") do |sheet|

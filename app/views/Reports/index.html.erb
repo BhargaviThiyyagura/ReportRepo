@@ -1,12 +1,16 @@
+
+
 <div>
 </div>
 
-<%= button_to 'Sales Report', reports_path(format: :xlsx), method: :get %>
+<div>
+</div>
+
+<%= button_to 'Daily Sales Report', reports_path(format: :xlsx), method: :get %>
 
 
 <div class="row no-gutters">
 <div class="col-xs-6">
-  <h2 class="sub-header">SALES/WAC</h2>
   <div class="table-responsive">
   <table class="table table-striped" width = "50">
   <thead class="thead-inverse">
@@ -22,10 +26,10 @@
    <% @slstrend.each do |r| %>
      <tr>
        <td class="col-xs-1"><%= r.SLS_PROC_WRK_DT %></td>
-       <td class="col-xs-1"><%= r.SALES %></td>
-       <td class="col-xs-1"><%= r.WAC %></td>
-       <td class="col-xs-1"><%= r.SLS_DIFF %></td>
-       <td class="col-xs-1"><%= number_to_percentage(r.SALES_TO_WAC) %></td> 
+       <td class="col-xs-1"><%= number_with_delimiter(r.SALES, :delimiter => ',') %></td>
+       <td class="col-xs-1"><%= number_with_delimiter(r.WAC, :delimiter => ',') %></td>
+       <td class="col-xs-1"><%= number_with_delimiter(r.SLS_DIFF, :delimiter => ',') %></td>
+       <td class="col-xs-1"><%= number_to_percentage(r.SALES_TO_WAC , precision: 0) %></td> 
     </tr>
      <% end %>
  </tbody>
