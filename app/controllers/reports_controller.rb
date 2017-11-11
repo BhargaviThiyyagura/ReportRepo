@@ -8,7 +8,6 @@ class ReportsController <ApplicationController
         #                              :conditions => ['COMPANY_CODE = ?', '8525']
         #                              :order => 'SLS_PROC_WRK_DT'
         #                              )
-
         #@mshsales = Report.where('COMPANY_CODE IN (8525)')
         
         @salessummary = SalesTrend.select(:sls_proc_wrk_dt,:yr_mnth,:program,:company_code, "SUM(wac) AS wac"  , "SUM(sdc) AS sdc", "SUM(sf) AS sf","SUM(ssf) AS ssf", "SUM(sls_qty) AS qty","SUM(sls_amt) AS sales").group(:sls_proc_wrk_dt,:yr_mnth,:program,:company_code).order('sls_proc_wrk_dt desc')
@@ -17,8 +16,15 @@ class ReportsController <ApplicationController
 
 
             @slstrend = SalesToWac.all.order('sls_proc_wrk_dt')
-         
+            #@slstrend = @slstrendall.select(:sls_proc_wrk_dt,:sales,:wac,:sls_diff,:sales_to_wac)
+
+         #binding.pry
           #binding.pry
+          #flash[:notice] = ["asndas"]
+          #binding.pry
+        #   <% if notice %>
+        #   <p id="notice"><%= notice.join("<br>").html_safe %></p>
+        #   <% end %>
 
         respond_to do |format|
             format.html

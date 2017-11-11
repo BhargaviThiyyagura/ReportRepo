@@ -8,7 +8,6 @@
 
 <%= button_to 'Daily Sales Report', reports_path(format: :xlsx), method: :get %>
 
-
 <div class="row no-gutters">
 <div class="col-xs-6">
   <div class="table-responsive">
@@ -24,13 +23,29 @@
  </thead>
  <tbody>
    <% @slstrend.each do |r| %>
-     <tr>
+    <% if r.SLS_ALERT_FLAG == 'Y' %>
+    
+     <tr class = #FF0000>
        <td class="col-xs-1"><%= r.SLS_PROC_WRK_DT %></td>
        <td class="col-xs-1"><%= number_with_delimiter(r.SALES, :delimiter => ',') %></td>
        <td class="col-xs-1"><%= number_with_delimiter(r.WAC, :delimiter => ',') %></td>
        <td class="col-xs-1"><%= number_with_delimiter(r.SLS_DIFF, :delimiter => ',') %></td>
        <td class="col-xs-1"><%= number_to_percentage(r.SALES_TO_WAC , precision: 0) %></td> 
     </tr>
+     <% end %>
+
+     <% if r.SLS_ALERT_FLAG == 'N' %>
+     
+      <tr>
+        <td class="col-xs-1"><%= r.SLS_PROC_WRK_DT %></td>
+        <td class="col-xs-1"><%= number_with_delimiter(r.SALES, :delimiter => ',') %></td>
+        <td class="col-xs-1"><%= number_with_delimiter(r.WAC, :delimiter => ',') %></td>
+        <td class="col-xs-1"><%= number_with_delimiter(r.SLS_DIFF, :delimiter => ',') %></td>
+        <td class="col-xs-1"><%= number_to_percentage(r.SALES_TO_WAC , precision: 0) %></td> 
+     </tr>
+     
+      <% end %>
+
      <% end %>
  </tbody>
  </table>
